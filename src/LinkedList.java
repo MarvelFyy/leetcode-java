@@ -1,11 +1,28 @@
 public class LinkedList {
     public ListNode createLinkedList(int[] listNode) {
-        ListNode head = new ListNode(listNode[0]);
-        ListNode p = head;
-        for (int i = 1; i < listNode.length; i++) {
+        ListNode dummy = new ListNode(-1);
+        ListNode p = dummy;
+        for (int i = 0; i < listNode.length; i++) {
             p.next = new ListNode(listNode[i]);
             p = p.next;
         }
-        return head;
+        return dummy.next;
+    }
+
+    public ListNode createCircleList(int[] listNode, int index) {
+        ListNode dummy = new ListNode(-1);
+        ListNode p = dummy;
+        ListNode circle = null;
+
+        for (int i = 0; i < listNode.length; i++) {
+            p.next = new ListNode(listNode[i]);
+            if (i == index) {
+                circle = p.next;
+            }
+            p = p.next;
+        }
+        p.next = circle;
+
+        return dummy.next;
     }
 }
